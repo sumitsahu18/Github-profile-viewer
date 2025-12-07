@@ -33,5 +33,5 @@ GitHub API: `https://api.github.com/users/${username}`
 3. Add animations   
 
 # License 
-This project is free to use.   abhi maine isse esa bna diya jisse lage ki mane banaya hai  
+This project is free to use. 
 
