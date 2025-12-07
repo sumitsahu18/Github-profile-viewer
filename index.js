@@ -1,64 +1,60 @@
 
- const input = document.getElementById('int')
-    async function fecthuser(username) {
-        let response = await fetch(`https://api.github.com/users/${username}`)
-        let result =   await response.json()
-        dispalyuser(result);
-    }
- document.getElementById('btn').addEventListener('click',(e)=>{
-          e.preventDefault();
-        let username = input.value;
-        fecthuser(username)
- });
-   function dispalyuser({avatar_url,
-    name,
-    bio,
-    followers,
-    following,
-    public_repos,
-    html_url}){  
-        if(!avatar_url){
-              document.getElementById('userhai').innerHTML =  `<h1>user not defined</h1>`
-              return
-        }
-        if(!bio){
-            bio = '';
-        }
-            document.getElementById('userhai').innerHTML =  
-       
-         `<div class="firstdiv">
-                <div>
-                    <img src=${avatar_url} class="photo">
-                </div>
-                <div>${name}</div>
-                <div>${bio}</div>
-            </div>
-            <div class="seconddiv">
-                <div class="content">
-                    <div class="number">
-                        <p>follower</p>
-                        <p>${followers}</p>
-                    </div>
-                    <div class="number">
-                        <p>following</p>
-                        <p>${following}</p>
-                    </div>
-                    <div class="number">
-                        <p>repo</p>
-                        <p>${public_repos}</p>
-                    </div>
-                </div>
-                
-                <a href = ${html_url} target ='_blank' class="visit"> 
-                <div class="visit">
-                    visit profile
-                </div>
-                </a>
-            </div>
-        </div>
-    </div>`
-     }
-     
+  const input =  document.getElementById('input')
 
- 
-   
+   document.getElementById('btn1').addEventListener('click',(e)=>{
+    e.preventDefault();        
+     let username  = input.value;
+     fetchfun(username);
+   }) 
+   async function fetchfun(username){
+      let response = await fetch(`https://api.github.com/users/${username}`)
+      let result = await response.json()
+      console.log(result)
+       displayuser(result);
+   }
+   function displayuser({
+      avatar_url,
+      name,
+      bio,
+      followers,
+      following,
+      public_repos,
+      html_url
+   }){
+    if(!avatar_url){
+         document.getElementById('body').innerHTML = `<h1>user not defined</h1>`
+         return
+    }
+    if(!bio){
+        bio = '';
+    }
+        document.getElementById('body').innerHTML = 
+          `   <div class="left">
+            <div>
+                <img src=${avatar_url} alt="" class="img1">
+            </div>
+            <div class="name">${name}</div>
+            <div class="bio">${bio}</div>
+        </div>
+        <div class="right">
+         <div class="rightup">
+            <div class="info">
+                <p>Followers</p>
+                <p>${followers}</p>
+            </div>
+            <div class="info">
+                <p>Following</p>
+                <p>${following}</p>
+            </div>
+            <div class="info">
+                <p>Repo</p>
+                <p>${public_repos}</p>
+            </div>
+         </div>
+         <a href = ${html_url} target ='_blank' class="rightdown">
+         <div class="rightdown">
+            <button class="btn2">visit profile</button>
+         </div>
+         </a>
+        </div>`
+   }
